@@ -1,0 +1,55 @@
+%% A simple integrate and fire neuron.
+\documentclass[crop,tikz]{standalone}
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\pgfplotsset{compat=newest}
+
+\begin{document}
+
+\newcommand{\spike}[2]{
+    \pgfplotsset{ticks=none}
+    \begin{axis}[scale=0.1, xshift=#1, yshift=#2
+            , hide axis, thin, black!20
+        ]
+        \addplot[smooth] coordinates {
+            (0,0) 
+            (0.02,0.1) 
+            (0.03,-0.02)
+            (0.05,0.0)
+    };
+    \end{axis}
+}
+    
+
+\begin{tikzpicture}[scale=1
+    , every node/.style={}
+    ]
+    
+    \node[circle,draw] (neuron) at (0,0) {$\Sigma$};
+
+    \spike{10}{10}
+
+    \node[] (input1) at (-1,0) {};
+
+
+    \node[] (input2) at (-1,1) {};
+
+    \node[] (input3) at (-1,-1) {};
+
+
+    \node[rectangle,draw, right of=neuron] (sum) {$f$};
+    \node[right of=sum] (output) {};
+
+    \draw[-] (neuron)  -- (sum) node[above,near end]{};
+
+    \draw[-] (input1) -- (neuron);
+    \draw[-] (input2) -- (neuron);
+    \draw[-] (input3) -- (neuron);
+
+    \draw[-] (sum) -- (output);
+
+
+\end{tikzpicture}    
+
+\end{document}
+
