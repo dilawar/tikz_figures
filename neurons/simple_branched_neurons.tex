@@ -8,6 +8,7 @@
 
 \begin{tikzpicture}[scale=1
         , every node/.style={}
+        , thick
     ]
 
     \node[] (soma) at (0,0) {}; 
@@ -28,8 +29,8 @@
     };
 
     %% soma is round 
-    \fill[blue!10
-        , draw=brown
+    \fill[draw
+        , fill=black!60
         %, decorate
         %, decoration={random steps, segment length=0.1, amplitude=0.1}
         , name path = somap
