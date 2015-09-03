@@ -8,34 +8,56 @@
 
 \newcommand{\spike}[2]{
     \pgfplotsset{ticks=none}
-    \begin{axis}[scale=0.1, xshift=#1, yshift=#2
-            , hide axis, thin, black!20
+    \begin{axis}[scale=1
+            , scale only axis % this fixes the label size issue
+            , xshift=#1, yshift=#2
+            , hide axis
+            , thin, black!30
+            , height=10
+            , width=10
+            , ymin = -0.090 , ymax = 0.040
         ]
         \addplot[smooth] coordinates {
-            (0,0) 
-            (0.02,0.1) 
-            (0.03,-0.02)
-            (0.05,0.0)
+            (0,-0.065) 
+            (0.2,0.020) 
+            (0.3,-0.080)
+            (0.5,-0.065)
+            (1.0,-0.065)
     };
     \end{axis}
 }
-    
+
+\newcommand{\epsp}[2]{
+    \pgfplotsset{ticks=none}
+    \begin{axis}[scale=0.04, xshift=#1, yshift=#2
+            , hide axis, thin, black!30
+        ]
+        \addplot[smooth] coordinates {
+            (0,-0.065) 
+            (0.1,-0.045) 
+            (0.3,-0.060)
+            (0.5,-0.065)
+            (1,-0.065)
+    };
+    \end{axis}
+}
 
 \begin{tikzpicture}[scale=1
     , every node/.style={}
     ]
     
     \node[circle,draw] (neuron) at (0,0) {$\Sigma$};
-
-    \spike{10}{10}
+    \spike{45}{5}
 
     \node[] (input1) at (-1,0) {};
+    \epsp{-30}{0}
 
 
     \node[] (input2) at (-1,1) {};
+    \epsp{-30}{-20}
 
     \node[] (input3) at (-1,-1) {};
-
+    \epsp{-30}{20}
 
     \node[rectangle,draw, right of=neuron] (sum) {$f$};
     \node[right of=sum] (output) {};
